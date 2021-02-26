@@ -6,7 +6,7 @@
 
 #' Simulate diffusion on network
 #'
-#' @param j network index (corresponds to 'Name' column in master_data)
+#' @param i network index (corresponds to 'Name' column in master_data)
 #' @param p.infection probability of infection
 #' @param pct.starting.infected percentage of nodes starting infected
 #' @param n number of repetitions of diffusion
@@ -18,7 +18,7 @@ simulate.diffusion <- function(i, p.infection, pct.starting.infected, n, thresho
   # load in network
   file <- as.character(master_data[i, Name])
   domain <- as.character(master_data[i, NetworkDomain])
-  edges <- master_data[j, Edges]
+  edges <- master_data[i, Edges]
   el <- fread(sprintf("data/final_data/%s.csv", file))
 
   # get number of nodes
@@ -56,7 +56,7 @@ simulate.diffusion <- function(i, p.infection, pct.starting.infected, n, thresho
     if(nrow(el) == 0){
       write.table(data.table(file, domain, n.people, edges, paste("limit:",length(which(infected_data$infected))
                                                                   /length(infected_data$infected))),
-                  file = sprintf("data/diffusion/rerun/rerun_%s%% starting_%s%% prob_%s%% threshold_%s.csv",
+                  file = sprintf("data/diffusion/%s%% starting_%s%% prob_%s%% threshold_%s.csv",
                                  (pct.starting.infected*100),(p.infection*100),
                                  (threshold*100), n), sep = ",", row.names = F,
                   append = T, col.names = F)
@@ -87,15 +87,15 @@ simulate.diffusion <- function(i, p.infection, pct.starting.infected, n, thresho
 
    # save required number of iterations needed to achieve 70% of nodes infected
     if(length(which(infected_data$infected))/length(infected_data$infected) >= threshold){
-      if(j == 1){
+      if(i == 1){
         write.table(data.table(Name = file, NetworkDomain = domain, Nodes = n.people, Edges = edges,
                                Iterations = (t + (ten.thousands*runs))),
-                    file = sprintf("output/diffusion/rerun/rerun_%s%% starting_%s%% prob_%s%% threshold_%s.csv",
+                    file = sprintf("output/diffusion/%s%% starting_%s%% prob_%s%% threshold_%s.csv",
                                    (pct.starting.infected*100),(p.infection*100),
                                    (threshold*100), n), sep = ",", row.names = F)
       } else {
         write.table(data.table(file, domain, n.people, edges, (t + (ten.thousands*runs))),
-                    file = sprintf("output/diffusion/rerun/rerun_%s%% starting_%s%% prob_%s%% threshold_%s.csv",
+                    file = sprintf("output/diffusion/%s%% starting_%s%% prob_%s%% threshold_%s.csv",
                                    (pct.starting.infected*100),(p.infection*100),
                                    (threshold*100), n), sep = ",", row.names = F,
                     append = T, col.names = F)

@@ -21,7 +21,7 @@ modify.networks <- function(files, path = "data/final_data",
 
     # skip network_specs.csv file
     if(name == "network_specs"){
-      break
+      next
     }
 
     # download edgelist
