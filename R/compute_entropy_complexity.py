@@ -301,9 +301,9 @@ def watts_strogatz_network(number_of_nodes, number_neighbors,
 
 import os
 # set directory
-os.chdir('~/Desktop/script_data_USCN-masterdata/final_data_txt')
+os.chdir('/Users/mattia/Desktop/script_data_USCN-master/data/final_data_txt')
 # save files
-files = os.listdir('~/Desktop/script_data_USCN-master/data/final_data_txt')
+files = os.listdir('/Users/mattia/Desktop/script_data_USCN-master/data/final_data_txt')
 import pandas as pd
 
 for filename in files:
@@ -320,7 +320,6 @@ for filename in files:
          df.to_csv('~/Desktop/script_data_USCN-master/output/complexity_and_entropy_measures.csv')
      else:
          df.to_csv('~/Desktop/script_data_USCN-master/output/complexity_and_entropy_measures.csv', mode='a', header=False)
-
 
 
 

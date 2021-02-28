@@ -42,7 +42,7 @@ feature.importance.logit <- function(master, fit = formula(fit)){
   ggplot(res, aes(x = Variable, y = value, fill = variable)) +
     geom_col(width=0.7, position = "dodge") + coord_flip() +
     scale_fill_manual(values = c("seagreen2", "dodgerblue2")) +
-    scale_y_continuous(limits=c(-2,2.5), breaks=c(-2, -1, 0, 1, 2)) +
+    scale_y_continuous(limits=c(-4,4), breaks=c(-4, -3, -2, -1, 0, 1, 2, 3, 4)) +
     theme(legend.title = element_blank(),
           axis.title = element_blank(),
           axis.text.x.bottom = element_text(size = 12),
