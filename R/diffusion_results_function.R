@@ -223,8 +223,7 @@ feature.importance.diffusion <- function(master, files, fit = formula(fit)){
   ggplot(estimate_table, aes(x = reorder(Measures, abs(value)), y = value,
                              fill = variable)) + geom_col(position = "dodge") +
     coord_flip() + labs(fill = "Simulation") +
-    scale_fill_manual(values = c("mediumpurple2", "seagreen2", "springgreen3", "seagreen4", "darkgreen",
-                                 "skyblue2", "dodgerblue1")) +
+    scale_fill_brewer(palette = "YlGnBu")  +
     theme(axis.title = element_blank(),
           axis.text.x.bottom = element_text(size = 12),
           axis.text.y.left = element_text(size = 12),
