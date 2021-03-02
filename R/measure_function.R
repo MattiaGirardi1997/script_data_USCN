@@ -141,7 +141,7 @@ compute.measures <- function(igraph.network, i, input = fread("input/network_spe
 #' @return data table
 #' @export
 #' @import data.table
-append.measures <- function(measures, i, path = "removed_loops/output/removed_loops_measures.csv"){
+append.measures <- function(measures, i, path = "output/master_measures.csv"){
   if (i == 1){
     write.table(measures, file = path, sep = ",", col.names = TRUE, row.names = FALSE)
   } else {

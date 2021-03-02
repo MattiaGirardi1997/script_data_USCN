@@ -248,10 +248,13 @@ feature.importance.diffusion <- function(master, files, fit = formula(fit)){
 #' Rank correlation
 #'
 #' @param master diffusion results
+#' @param fit model fit
+#' @param numb.variables number of variable sto include in rank correlation
 #' @return feature importance plot
 #' @export
 #' @import data.table
-feature.rank.corrplot <- function(master, fit = formula(fit)){
+feature.rank.corrplot <- function(master, fit = formula(fit),
+                                  numb.variables = 5){
   # diffusion regression
   diffusion_lm <- lm(form = fit,
                      data = master)
@@ -270,9 +273,9 @@ feature.rank.corrplot <- function(master, fit = formula(fit)){
   # create ranks table
   for(r in 1:length(summaries)){
     if(r == 1){
-      ranks <- data.frame(summaries[[r]]$ID[1:5])
+      ranks <- data.frame(summaries[[r]]$ID[1:numb.variables])
     } else {
-      ranks <- cbind(ranks, summaries[[r]]$ID[1:5])
+      ranks <- cbind(ranks, summaries[[r]]$ID[1:numb.variables])
     }
   }
   
